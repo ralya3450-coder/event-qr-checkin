@@ -132,6 +132,10 @@ function showPage(page) {
         startScanner();
 
     }
+    
+    if (page === "qrcodes") {
+    loadQRCodes();
+}
 
 
     if (page === "guests") {
@@ -752,4 +756,81 @@ async function manualCheckIn() {
                 ? " — " + guest.guest_name
                 : "");
     }
+}
+async function loadQRCodes() {
+
+    const gallery = document.getElementById("qr-gallery");
+
+    if (!gallery) return;
+
+    gallery.innerHTML = "Loading QR codes...";
+
+    const { data, error } = await supabaseClient
+        .from("guests")
+        .select("guest_number, guest_name, guest_code, used_at")
+        .order("guest_number", { ascending: true });
+
+    if (error) {
+        console.error(error);
+        gallery.innerHTML = "Could not load QR codes.";
+        return;
+    }
+
+    if (!data || data.length === 0) {
+        gallery.innerHTML = "No guests yet.";
+        return;
+    }
+
+    gallery.innerHTML = "";
+
+    data.forEach(guest => {
+
+        const card = document.createElement("div");
+
+        card.className = "qr-card";
+
+        if (guest.used_at) {
+            card.classList.add("used");
+        }
+
+        const qrBox = document.createElement("div");
+
+        qrBox.className = "qr-image";
+
+        new QRCode(qrBox, {
+            text: guest.guest_code,
+            width: 180,
+            height: 180
+        });
+
+        const number = document.createElement("div");
+
+        number.className = "qr-number";
+
+        number.textContent =
+            "#" + String(guest.guest_number).padStart(3, "0");
+
+        const name = document.createElement("div");
+
+        name.className = "qr-name";
+
+        name.textContent = guest.guest_name;
+
+        card.appendChild(qrBox);
+        card.appendChild(number);
+        card.appendChild(name);
+
+        if (guest.used_at) {
+
+            const used = document.createElement("div");
+
+            used.className = "qr-used";
+
+            used.textContent = "USED";
+
+            card.appendChild(used);
+        }
+
+        gallery.appendChild(card);
+    });
 }
