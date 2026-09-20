@@ -220,3 +220,126 @@ header {
     font-size: 18px;
     font-weight: bold;
 }
+/* QR Code Gallery */
+
+#qr-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+    margin-top: 25px;
+}
+
+.qr-card {
+    position: relative;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.qr-image {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 12px;
+}
+
+.qr-number {
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 8px;
+}
+
+.qr-name {
+    font-size: 16px;
+    margin-top: 6px;
+}
+
+.qr-card.used {
+    opacity: 0.45;
+    filter: grayscale(100%);
+}
+
+.qr-used {
+    position: absolute;
+    top: 15px;
+    right: -35px;
+    background: #8b0000;
+    color: white;
+    padding: 7px 40px;
+    font-size: 14px;
+    font-weight: bold;
+    transform: rotate(45deg);
+}
+/* QR Code Gallery */
+
+#qr-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+    margin-top: 25px;
+}
+
+.qr-card {
+    position: relative;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.qr-image {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 12px;
+}
+
+.qr-number {
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 8px;
+}
+
+.qr-name {
+    font-size: 16px;
+    margin-top: 6px;
+}
+
+.qr-card.used {
+    opacity: 0.45;
+    filter: grayscale(100%);
+}
+
+.qr-used {
+    position: absolute;
+    top: 15px;
+    right: -35px;
+    background: #8b0000;
+    color: white;
+    padding: 7px 40px;
+    font-size: 14px;
+    font-weight: bold;
+    transform: rotate(45deg);
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    #qr-gallery {
+        grid-template-columns: 1fr;
+    }
+
+}
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    #qr-gallery {
+        grid-template-columns: 1fr;
+    }
+
+}
