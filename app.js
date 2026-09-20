@@ -177,14 +177,23 @@ async function createGuest() {
         "Creating guest...";
 
 
-    const { data, error } =
-        await supabaseClient
-            .from("guests")
-            .insert({
-                guest_name: name
-            })
-            .select()
-            .single();
+   const { data, error } =
+    await supabaseClient.rpc(
+        "create_guest",
+        {
+            p_guest_name: name
+        }
+    );
+
+if (error) {
+
+    message.textContent =
+        error.message;
+
+    return;
+}
+
+const guest = data[0];
 
 
     if (error) {
@@ -205,14 +214,32 @@ async function createGuest() {
 
     // Generate new QR
 
-    new QRCode(
-        document.getElementById("qrcode"),
-        {
-            text: data.guest_code,
-            width: 250,
-            height: 250
-        }
-    );
+   new QRCode(
+    document.getElementById("qrcode"),
+    {
+        text: guest.guest_code,
+        width: 250,
+        height: 250
+    }
+);
+
+const number = String(
+    guest.guest_number
+).padStart(3, "0");
+
+const numberElement =
+    document.createElement("div");
+
+numberElement.textContent = number;
+
+numberElement.style.fontSize = "28px";
+numberElement.style.fontWeight = "bold";
+numberElement.style.textAlign = "center";
+numberElement.style.marginTop = "10px";
+
+document
+    .getElementById("qrcode")
+    .appendChild(numberElement);
 
 
     document
