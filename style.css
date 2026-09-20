@@ -171,3 +171,53 @@ header {
         gap: 5px;
     }
 }
+/* Manual guest number check-in */
+
+.manual-checkin {
+    margin-top: 30px;
+    padding: 25px;
+    border: 1px solid #b89545;
+    border-radius: 12px;
+    text-align: center;
+    background: #211a13;
+}
+
+.manual-checkin h3 {
+    margin-top: 0;
+    font-size: 22px;
+}
+
+.manual-checkin p {
+    margin-bottom: 18px;
+}
+
+.manual-input-row {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.manual-input-row input {
+    width: 140px;
+    padding: 12px;
+    font-size: 20px;
+    text-align: center;
+    border-radius: 8px;
+    border: 1px solid #b89545;
+}
+
+.manual-input-row button {
+    padding: 12px 20px;
+    font-size: 18px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+}
+
+#manual-result {
+    margin-top: 18px;
+    font-size: 18px;
+    font-weight: bold;
+}
