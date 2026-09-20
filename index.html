@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Event QR Check-In</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+    <script src="https://unpkg.com/html5-qrcode"></script>
+</head>
+
+<body>
+
+<div class="container">
+
+    <section id="login-section">
+
+        <h1>Event Check-In</h1>
+
+        <p>Admin Login</p>
+
+        <input
+            type="email"
+            id="email"
+            placeholder="Email"
+        >
+
+        <input
+            type="password"
+            id="password"
+            placeholder="Password"
+        >
+
+        <button onclick="login()">
+            Login
+        </button>
+
+        <p id="login-message"></p>
+
+    </section>
+
+
+    <section id="admin-section" class="hidden">
+
+        <header>
+
+            <div>
+                <h1>Event Check-In</h1>
+                <p>QR Guest Management</p>
+            </div>
+
+            <button onclick="logout()">
+                Logout
+            </button>
+
+        </header>
+
+
+        <div class="stats">
+
+            <div class="stat-card">
+                <span id="total-guests">0</span>
+                <p>Total Guests</p>
+            </div>
+
+            <div class="stat-card">
+                <span id="entered-guests">0</span>
+                <p>Entered</p>
+            </div>
+
+            <div class="stat-card">
+                <span id="remaining-guests">0</span>
+                <p>Remaining</p>
+            </div>
+
+        </div>
+
+
+        <div class="tabs">
+
+            <button onclick="showPage('generate')">
+                Generate QR
+            </button>
+
+            <button onclick="showPage('scan')">
+                Scan QR
+            </button>
+
+            <button onclick="showPage('guests')">
+                Guests
+            </button>
+
+        </div>
+
+
+        <section id="generate-page">
+
+            <h2>Generate Guest QR</h2>
+
+            <input
+                type="text"
+                id="guest-name"
+                placeholder="Guest name"
+            >
+
+            <button onclick="createGuest()">
+                Generate QR
+            </button>
+
+            <div id="qr-result" class="hidden">
+
+                <h3>QR Code</h3>
+
+                <div id="qrcode"></div>
+
+                <button onclick="downloadQR()">
+                    Download QR
+                </button>
+
+            </div>
+
+            <p id="generate-message"></p>
+
+        </section>
+
+
+        <section id="scan-page" class="hidden">
+
+            <h2>Scan Invitation</h2>
+
+            <div id="reader"></div>
+
+            <div id="scan-result"></div>
+
+        </section>
+
+
+        <section id="guests-page" class="hidden">
+
+            <h2>Guest List</h2>
+
+            <button onclick="loadGuests()">
+                Refresh
+            </button>
+
+            <div id="guest-list"></div>
+
+        </section>
+
+    </section>
+
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>
