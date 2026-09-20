@@ -688,3 +688,68 @@ async function checkSession() {
 // Start the application
 
 checkSession();
+async function manualCheckIn() {
+
+    const input =
+        document.getElementById("manual-guest-number");
+
+    const result =
+        document.getElementById("manual-result");
+
+    const number =
+        parseInt(input.value, 10);
+
+    if (!number) {
+        result.textContent =
+            "Please enter a guest number.";
+        return;
+    }
+
+    result.textContent =
+        "Checking guest...";
+
+    const { data, error } =
+        await supabaseClient.rpc(
+            "check_in_guest_by_number",
+            {
+                p_guest_number: number
+            }
+        );
+
+    if (error) {
+        console.error(error);
+
+        result.textContent =
+            error.message;
+
+        return;
+    }
+
+    if (!data || data.length === 0) {
+        result.textContent =
+            "Guest not found.";
+        return;
+    }
+
+    const guest = data[0];
+
+    if (guest.success) {
+
+        result.textContent =
+            "✓ Entry Approved — " +
+            guest.guest_name;
+
+        input.value = "";
+
+        loadStats();
+        loadGuests();
+
+    } else {
+
+        result.textContent =
+            "✗ " + guest.message +
+            (guest.guest_name
+                ? " — " + guest.guest_name
+                : "");
+    }
+}
