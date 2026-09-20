@@ -1,0 +1,173 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    color: #222;
+}
+
+.container {
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+    padding: 30px 20px;
+}
+
+h1 {
+    margin-bottom: 5px;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Login */
+
+#login-section {
+    max-width: 400px;
+    margin: 80px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+}
+
+input {
+    width: 100%;
+    padding: 14px;
+    margin: 8px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+button {
+    border: none;
+    padding: 13px 20px;
+    margin: 6px 3px;
+    border-radius: 8px;
+    cursor: pointer;
+    background: #222;
+    color: white;
+    font-size: 15px;
+}
+
+button:hover {
+    opacity: 0.85;
+}
+
+/* Header */
+
+header {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* Statistics */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.stat-card {
+    background: white;
+    padding: 25px;
+    text-align: center;
+    border-radius: 15px;
+}
+
+.stat-card span {
+    display: block;
+    font-size: 36px;
+    font-weight: bold;
+}
+
+/* Tabs */
+
+.tabs {
+    background: white;
+    padding: 10px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+/* Pages */
+
+#generate-page,
+#scan-page,
+#guests-page {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+}
+
+/* QR */
+
+#qrcode {
+    margin: 20px 0;
+}
+
+/* Scanner */
+
+#reader {
+    width: 100%;
+    max-width: 500px;
+    margin: 20px auto;
+}
+
+/* Results */
+
+.success {
+    padding: 25px;
+    background: #e9f9ee;
+    color: #16753b;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.error {
+    padding: 25px;
+    background: #fdecec;
+    color: #b42318;
+    border-radius: 12px;
+    text-align: center;
+}
+
+/* Guest list */
+
+.guest-row {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .guest-row {
+        flex-direction: column;
+        gap: 5px;
+    }
+}
