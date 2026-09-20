@@ -135,6 +135,43 @@
             <div id="reader"></div>
 
             <div id="scan-result"></div>
+            <section id="scan-page" class="hidden">
+
+    <h2>Scan Invitation</h2>
+
+    <div id="reader"></div>
+
+    <div id="scan-result"></div>
+
+    <!-- ADD THIS PART -->
+    <div class="manual-checkin">
+
+        <h3>Manual Check-In</h3>
+
+        <p>
+            If the QR code cannot be scanned, enter the guest number.
+        </p>
+
+        <div class="manual-input-row">
+
+            <input
+                type="number"
+                id="manual-guest-number"
+                placeholder="001"
+                min="1"
+            >
+
+            <button onclick="manualCheckIn()">
+                Check In
+            </button>
+
+        </div>
+
+        <div id="manual-result"></div>
+
+    </div>
+
+</section>
 
         </section>
 
