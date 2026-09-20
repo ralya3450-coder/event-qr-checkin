@@ -158,101 +158,115 @@ async function createGuest() {
             .value
             .trim();
 
-
     const message =
-        document
-            .getElementById("generate-message");
-
+        document.getElementById("generate-message");
 
     if (!name) {
-
         message.textContent =
             "Please enter the guest name.";
-
         return;
     }
-
 
     message.textContent =
         "Creating guest...";
 
+    const { data, error } =
+        await supabaseClient
+            .rpc("create_guest", {
+                p_guest_name: name
+            });
 
-   const { data, error } =
-    await supabaseClient.rpc(
-        "create_guest",
-        {
-            p_guest_name: name
-        }
-    );
+    if (error) {
+        console.error(error);
 
-if (error) {
+        message.textContent =
+            error.message;
 
-    message.textContent =
-        error.message;
+        return;
+    }
 
-    return;
-}
+    if (!data || data.length === 0) {
+        message.textContent =
+            "Guest was created, but no guest data was returned.";
 
-const guest = guestData[0];
+        return;
+    }
 
-window.currentGuestNumber =
-    String(guest.guest_number).padStart(3, "0");
+    const guest = data[0];
+
+    const guestNumber =
+        String(guest.guest_number)
+            .padStart(3, "0");
+
+    window.currentGuestNumber =
+        guestNumber;
 
     // Clear previous QR
+    const qrContainer =
+        document.getElementById("qrcode");
 
-    document
-        .getElementById("qrcode")
-        .innerHTML = "";
+    qrContainer.innerHTML = "";
 
-
-    // Generate new QR
-
-   new QRCode(
-    document.getElementById("qrcode"),
-    {
+    // Generate QR
+    new QRCode(qrContainer, {
         text: guest.guest_code,
         width: 250,
         height: 250
-    }
-);
+    });
 
-const number = String(
-    guest.guest_number
-).padStart(3, "0");
+    // Wait for QR canvas to appear
+    setTimeout(() => {
 
-const numberElement =
-    document.createElement("div");
+        const qrCanvas =
+            qrContainer.querySelector("canvas");
 
-numberElement.textContent = number;
+        if (!qrCanvas) {
+            message.textContent =
+                "Guest created, but QR could not be generated.";
 
-numberElement.style.fontSize = "28px";
-numberElement.style.fontWeight = "bold";
-numberElement.style.textAlign = "center";
-numberElement.style.marginTop = "10px";
+            return;
+        }
 
-document
-    .getElementById("qrcode")
-    .appendChild(numberElement);
+        // Create number underneath QR
+        const numberElement =
+            document.createElement("div");
 
+        numberElement.textContent =
+            guestNumber;
 
-    document
-        .getElementById("qr-result")
-        .classList.remove("hidden");
+        numberElement.style.fontSize =
+            "28px";
 
+        numberElement.style.fontWeight =
+            "bold";
 
-    message.textContent =
-        "QR code created successfully.";
+        numberElement.style.textAlign =
+            "center";
 
+        numberElement.style.marginTop =
+            "10px";
 
-    document
-        .getElementById("guest-name")
-        .value = "";
+        qrContainer.appendChild(
+            numberElement
+        );
 
+        // Show QR result
+        document
+            .getElementById("qr-result")
+            .classList.remove("hidden");
 
-    loadStats();
-    loadGuests();
+        message.textContent =
+            "QR code created successfully.";
+
+        document
+            .getElementById("guest-name")
+            .value = "";
+
+        loadStats();
+        loadGuests();
+
+    }, 200);
 }
-
 
 // ==========================================
 // DOWNLOAD QR
