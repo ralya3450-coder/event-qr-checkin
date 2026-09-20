@@ -46,18 +46,79 @@
 
     <section id="admin-section" class="hidden">
 
-        <header>
+        <!-- TOP NAVIGATION -->
 
-            <div>
-                <h1>Event Check-In</h1>
-                <p>QR Guest Management</p>
-            </div>
+<header class="luxury-header">
 
-            <button onclick="logout()">
-                Logout
-            </button>
+    <div class="brand-area">
 
-        </header>
+        <div class="brand-mark">
+            ✦
+        </div>
+
+        <div>
+            <h1>EVENT CHECK-IN</h1>
+            <p>Luxury Guest Management System</p>
+        </div>
+
+    </div>
+
+    <div class="header-right">
+
+        <div class="admin-badge">
+            <span>●</span>
+            ADMIN
+        </div>
+
+        <button
+            class="logout-btn"
+            onclick="logout()"
+        >
+            Logout
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- NAVIGATION -->
+
+<div class="tabs luxury-tabs">
+
+    <button
+        class="luxury-tab active"
+        onclick="showPage('generate')"
+    >
+        <span>⌂</span>
+        Dashboard
+    </button>
+
+    <button
+        class="luxury-tab"
+        onclick="showPage('scan')"
+    >
+        <span>⌗</span>
+        Scan QR
+    </button>
+
+    <button
+        class="luxury-tab"
+        onclick="showPage('qrcodes')"
+    >
+        <span>▦</span>
+        QR Codes
+    </button>
+
+    <button
+        class="luxury-tab"
+        onclick="showPage('guests')"
+    >
+        <span>♧</span>
+        Guests
+    </button>
+
+</div>
 
 
         <div class="stats">
