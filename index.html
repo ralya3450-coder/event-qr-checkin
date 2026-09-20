@@ -1,398 +1,759 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Event QR Check-In</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <link rel="stylesheet" href="style.css">
+    <title>Event Check-In</title>
 
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+    <!-- Supabase -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- QR Generator -->
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+
+    <!-- QR Scanner -->
     <script src="https://unpkg.com/html5-qrcode"></script>
+
 </head>
+
 
 <body>
 
-<div class="container">
 
-    <section id="login-section">
+<!-- =====================================================
+     LOGIN
+===================================================== -->
 
-        <h1>Event Check-In</h1>
+<section id="login-section">
 
-        <p>Admin Login</p>
+    <div class="login-logo">
+        EV
+    </div>
 
-        <input
-            type="email"
-            id="email"
-            placeholder="Email"
-        >
+    <h1>
+        Event Check-In
+    </h1>
 
-        <input
-            type="password"
-            id="password"
-            placeholder="Password"
-        >
-
-        <button onclick="login()">
-            Login
-        </button>
-
-        <p id="login-message"></p>
-
-    </section>
+    <p>
+        QR Guest Management
+    </p>
 
 
-    <section id="admin-section" class="hidden">
-
-        <!-- LUXURY DASHBOARD -->
-
-<div class="dashboard-layout">
-
-    <!-- LEFT SIDEBAR -->
-
-    <aside class="sidebar">
-
-        <div class="sidebar-brand">
-
-            <div class="sidebar-logo">
-                EV
-            </div>
-
-            <div>
-                <div class="sidebar-title">
-                    Event Check-In
-                </div>
-
-                <div class="sidebar-subtitle">
-                    QR Guest Management
-                </div>
-            </div>
-
-        </div>
+    <input
+        type="email"
+        id="email"
+        placeholder="Email"
+    >
 
 
-        <nav class="sidebar-nav">
-
-            <button
-                class="sidebar-item active"
-                onclick="showPage('generate')"
-            >
-                <span class="sidebar-icon">⌂</span>
-                <span>Dashboard</span>
-            </button>
+    <input
+        type="password"
+        id="password"
+        placeholder="Password"
+    >
 
 
-            <button
-                class="sidebar-item"
-                onclick="showPage('scan')"
-            >
-                <span class="sidebar-icon">⌗</span>
-                <span>Scan QR</span>
-            </button>
+    <button onclick="login()">
+        Login
+    </button>
 
 
-            <button
-                class="sidebar-item"
-                onclick="showPage('qrcodes')"
-            >
-                <span class="sidebar-icon">▦</span>
-                <span>QR Codes</span>
-            </button>
+    <p id="login-message"></p>
+
+</section>
 
 
-            <button
-                class="sidebar-item"
-                onclick="showPage('guests')"
-            >
-                <span class="sidebar-icon">♧</span>
-                <span>Guests</span>
-            </button>
 
-        </nav>
+<!-- =====================================================
+     ADMIN DASHBOARD
+===================================================== -->
 
-
-        <div class="sidebar-decoration">
-
-            <div>Good people</div>
-            <div>make great events</div>
-
-            <span>♥</span>
-
-        </div>
-
-    </aside>
+<section
+    id="admin-section"
+    class="hidden"
+>
 
 
-    <!-- MAIN DASHBOARD -->
-
-    <main class="dashboard-main">
+    <div class="dashboard-layout">
 
 
-        <!-- TOP HEADER -->
+        <!-- =================================================
+             SIDEBAR
+        ================================================== -->
 
-        <header class="dashboard-header">
+        <aside class="sidebar">
 
-            <div class="mobile-brand">
+
+            <!-- BRAND -->
+
+            <div class="sidebar-brand">
 
                 <div class="sidebar-logo">
                     EV
                 </div>
 
-                <div>
-                    <strong>Event Check-In</strong>
+                <div class="sidebar-brand-text">
 
-                    <small>
+                    <div class="sidebar-title">
+                        Event Check-In
+                    </div>
+
+                    <div class="sidebar-subtitle">
                         QR Guest Management
-                    </small>
+                    </div>
+
                 </div>
 
             </div>
 
 
-            <div class="dashboard-user">
 
-                <div class="admin-profile">
+            <!-- NAVIGATION -->
 
-                    <span class="profile-icon">
-                        ◯
-                    </span>
-
-                    <span>
-                        Admin
-                    </span>
-
-                    <span>
-                       ⌄
-                    </span>
-
-                </div>
+            <nav class="sidebar-nav">
 
 
                 <button
-                    class="dashboard-logout"
-                    onclick="logout()"
+                    class="sidebar-item active"
+                    onclick="showPage('generate')"
                 >
-                    ⇥
+
+                    <span class="sidebar-icon">
+                        ⌂
+                    </span>
+
+                    <span>
+                        Dashboard
+                    </span>
+
                 </button>
 
-            </div>
-
-        </header>
 
 
-        <!-- WEDDING HERO -->
+                <button
+                    class="sidebar-item"
+                    onclick="showPage('scan')"
+                >
 
-        <section class="wedding-hero">
+                    <span class="sidebar-icon">
+                        ⌗
+                    </span>
 
-            <div class="hero-ornament">
-                ───── ◆ ─────
-            </div>
+                    <span>
+                        Scan QR
+                    </span>
+
+                </button>
 
 
-            <div class="hero-content">
 
-                <div class="hero-decoration left">
-                    ❧
-                </div>
+                <button
+                    class="sidebar-item"
+                    onclick="showPage('qrcodes')"
+                >
 
+                    <span class="sidebar-icon">
+                        ▦
+                    </span>
+
+                    <span>
+                        QR Codes
+                    </span>
+
+                </button>
+
+
+
+                <button
+                    class="sidebar-item"
+                    onclick="showPage('guests')"
+                >
+
+                    <span class="sidebar-icon">
+                        ♧
+                    </span>
+
+                    <span>
+                        Guests
+                    </span>
+
+                </button>
+
+
+            </nav>
+
+
+
+            <!-- SIDEBAR DECORATION -->
+
+            <div class="sidebar-decoration">
 
                 <div>
+                    Good people
+                </div>
 
-                    <h1>
-                        WEDDING EVENT
-                    </h1>
+                <div>
+                    make great events
+                </div>
 
-                    <h2>
-                        GUEST CHECK-IN SYSTEM
-                    </h2>
+                <span>
+                    ♥
+                </span>
 
-                    <div class="hero-divider">
-                        <span>Scan</span>
-                        <b>◆</b>
-                        <span>Check In</span>
-                        <b>◆</b>
-                        <span>Celebrate</span>
+            </div>
+
+
+        </aside>
+
+
+
+        <!-- =================================================
+             MAIN CONTENT
+        ================================================== -->
+
+        <main class="dashboard-main">
+
+
+            <!-- =================================================
+                 TOP HEADER
+            ================================================== -->
+
+            <header class="dashboard-header">
+
+
+                <div class="mobile-brand">
+
+                    <div class="sidebar-logo">
+                        EV
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Event Check-In
+                        </strong>
+
+                        <small>
+                            QR Guest Management
+                        </small>
+
                     </div>
 
                 </div>
 
 
-                <div class="hero-decoration right">
-                    ❧
+
+                <div class="dashboard-user">
+
+
+                    <div class="admin-profile">
+
+                        <span class="profile-icon">
+                            ◯
+                        </span>
+
+                        <span>
+                            Admin
+                        </span>
+
+                        <span class="profile-arrow">
+                            ⌄
+                        </span>
+
+                    </div>
+
+
+                    <button
+                        class="dashboard-logout"
+                        onclick="logout()"
+                        title="Logout"
+                    >
+                        ⇥
+                    </button>
+
+
                 </div>
+
+
+            </header>
+
+
+
+            <!-- =================================================
+                 WEDDING HERO
+            ================================================== -->
+
+            <section class="wedding-hero">
+
+
+                <div class="hero-ornament">
+                    ───── ◆ ─────
+                </div>
+
+
+
+                <div class="hero-content">
+
+
+                    <div class="hero-decoration left">
+                        ❧
+                    </div>
+
+
+
+                    <div class="hero-center">
+
+
+                        <h1>
+                            WEDDING EVENT
+                        </h1>
+
+
+                        <h2>
+                            GUEST CHECK-IN SYSTEM
+                        </h2>
+
+
+                        <div class="hero-divider">
+
+                            <span>
+                                Scan
+                            </span>
+
+                            <b>
+                                ◆
+                            </b>
+
+                            <span>
+                                Check In
+                            </span>
+
+                            <b>
+                                ◆
+                            </b>
+
+                            <span>
+                                Celebrate
+                            </span>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <div class="hero-decoration right">
+                        ❧
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 STATISTICS
+            ================================================== -->
+
+            <div class="stats">
+
+
+                <!-- TOTAL -->
+
+                <div class="stat-card">
+
+
+                    <div class="stat-icon">
+                        ♟
+                    </div>
+
+
+                    <div class="stat-information">
+
+                        <span id="total-guests">
+                            0
+                        </span>
+
+                        <p>
+                            TOTAL GUESTS
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- CHECKED IN -->
+
+                <div class="stat-card">
+
+
+                    <div class="stat-icon">
+                        ✓
+                    </div>
+
+
+                    <div class="stat-information">
+
+                        <span id="entered-guests">
+                            0
+                        </span>
+
+                        <p>
+                            CHECKED IN
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- REMAINING -->
+
+                <div class="stat-card">
+
+
+                    <div class="stat-icon">
+                        ◷
+                    </div>
+
+
+                    <div class="stat-information">
+
+                        <span id="remaining-guests">
+                            0
+                        </span>
+
+                        <p>
+                            REMAINING
+                        </p>
+
+                    </div>
+
+
+                </div>
+
 
             </div>
 
-        </section>
 
 
-        <!-- STATISTICS -->
+            <!-- =================================================
+                 DASHBOARD / GENERATE PAGE
+            ================================================== -->
 
-        <div class="stats">
-
-            <div class="stat-card">
-
-                <div class="stat-icon">
-                    ♟
-                </div>
-
-                <div class="stat-information">
-
-                    <span id="total-guests">
-                        0
-                    </span>
-
-                    <p>
-                        TOTAL GUESTS
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="stat-card">
-
-                <div class="stat-icon">
-                    ✓
-                </div>
-
-                <div class="stat-information">
-
-                    <span id="entered-guests">
-                        0
-                    </span>
-
-                    <p>
-                        CHECKED IN
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="stat-card">
-
-                <div class="stat-icon">
-                    ◷
-                </div>
-
-                <div class="stat-information">
-
-                    <span id="remaining-guests">
-                        0
-                    </span>
-
-                    <p>
-                        REMAINING
-                    </p>
-
-                </div>
-
-            </div>
-
-              </div>
-
-
-        <!-- DASHBOARD PAGES -->
-
-        <section id="generate-page">
-
-            <h2>Generate Guest QR</h2>
-
-            <input
-                type="text"
-                id="guest-name"
-                placeholder="Guest name"
+            <section
+                id="generate-page"
+                class="dashboard-page"
             >
 
-            <button onclick="createGuest()">
-                Generate QR
-            </button>
 
-            <div id="qr-result" class="hidden">
-
-                <h3>QR Code</h3>
-
-                <div id="qrcode"></div>
-
-                <button onclick="downloadQR()">
-                    Download QR
-                </button>
-
-            </div>
-
-            <p id="generate-message"></p>
-
-        </section>
-
-            <p id="generate-message"></p>
-
-        </section>
+                <div class="page-header">
 
 
-        <section id="scan-page" class="hidden">
+                    <div>
 
-            <h2>Scan Invitation</h2>
+                        <div class="section-eyebrow">
+                            GUEST MANAGEMENT
+                        </div>
 
-            <div id="reader"></div>
+                        <h2>
+                            Generate Guest QR
+                        </h2>
 
-            <div id="scan-result"></div>
-            
-    <div class="manual-checkin">
+                        <p>
+                            Create a unique QR invitation for your guest.
+                        </p>
 
-        <h3>Manual Check-In</h3>
+                    </div>
 
-        <p>
-            If the QR code cannot be scanned, enter the guest number.
-        </p>
 
-        <div class="manual-input-row">
+                </div>
 
-            <input
-                type="number"
-                id="manual-guest-number"
-                placeholder="001"
-                min="1"
+
+
+                <div class="generate-box">
+
+
+                    <input
+                        type="text"
+                        id="guest-name"
+                        placeholder="Enter guest name"
+                    >
+
+
+                    <button onclick="createGuest()">
+                        Generate QR
+                    </button>
+
+
+                </div>
+
+
+
+                <!-- GENERATED QR -->
+
+                <div
+                    id="qr-result"
+                    class="hidden"
+                >
+
+
+                    <h3>
+                        QR Code Generated
+                    </h3>
+
+
+                    <div id="qrcode"></div>
+
+
+                    <button onclick="downloadQR()">
+                        Download QR
+                    </button>
+
+
+                </div>
+
+
+                <p id="generate-message"></p>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 SCAN PAGE
+            ================================================== -->
+
+            <section
+                id="scan-page"
+                class="dashboard-page hidden"
             >
 
-            <button onclick="manualCheckIn()">
-                Check In
-            </button>
 
-        </div>
+                <div class="page-header">
 
-        <div id="manual-result"></div>
+                    <div>
+
+                        <div class="section-eyebrow">
+                            ENTRY MANAGEMENT
+                        </div>
+
+                        <h2>
+                            Scan Invitation
+                        </h2>
+
+                        <p>
+                            Scan a guest's QR invitation to check them in.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- QR SCANNER -->
+
+                <div id="reader"></div>
+
+
+                <!-- SCAN RESULT -->
+
+                <div id="scan-result"></div>
+
+
+
+                <!-- MANUAL CHECK-IN -->
+
+                <div class="manual-checkin">
+
+
+                    <div class="section-eyebrow">
+                        ALTERNATIVE CHECK-IN
+                    </div>
+
+
+                    <h3>
+                        Manual Check-In
+                    </h3>
+
+
+                    <p>
+                        If the QR code cannot be scanned,
+                        enter the guest number.
+                    </p>
+
+
+
+                    <div class="manual-input-row">
+
+
+                        <input
+                            type="number"
+                            id="manual-guest-number"
+                            placeholder="001"
+                            min="1"
+                        >
+
+
+                        <button onclick="manualCheckIn()">
+                            Check In
+                        </button>
+
+
+                    </div>
+
+
+                    <div id="manual-result"></div>
+
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 GUESTS PAGE
+            ================================================== -->
+
+            <section
+                id="guests-page"
+                class="dashboard-page hidden"
+            >
+
+
+                <div class="page-header">
+
+
+                    <div>
+
+                        <div class="section-eyebrow">
+                            GUEST MANAGEMENT
+                        </div>
+
+                        <h2>
+                            Guest List
+                        </h2>
+
+                        <p>
+                            View and manage all registered guests.
+                        </p>
+
+                    </div>
+
+
+                    <button onclick="loadGuests()">
+                        Refresh
+                    </button>
+
+
+                </div>
+
+
+
+                <div id="guest-list"></div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 QR CODES PAGE
+            ================================================== -->
+
+            <section
+                id="qrcodes-page"
+                class="dashboard-page hidden"
+            >
+
+
+                <div class="page-header">
+
+
+                    <div>
+
+                        <div class="section-eyebrow">
+                            INVITATION MANAGEMENT
+                        </div>
+
+                        <h2>
+                            All QR Codes
+                        </h2>
+
+                        <p>
+                            View every guest invitation QR code.
+                        </p>
+
+                    </div>
+
+
+                    <div class="qr-search">
+
+                        <span>
+                            ⌕
+                        </span>
+
+                        <input
+                            type="text"
+                            id="qr-search"
+                            placeholder="Search by name or number..."
+                        >
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- QR GALLERY -->
+
+                <div id="qr-gallery"></div>
+
+
+            </section>
+
+
+        </main>
+
 
     </div>
 
-</section>
-            
-        <section id="guests-page" class="hidden">
-
-            <h2>Guest List</h2>
-
-            <button onclick="loadGuests()">
-                Refresh
-            </button>
-
-            <div id="guest-list"></div>
-
-        </section>
-        <section id="qrcodes-page" class="hidden">
-
-    <h2>All QR Codes</h2>
-
-    <div id="qr-gallery"></div>
 
 </section>
 
-</div>
+
+
+<!-- APP JAVASCRIPT -->
 
 <script src="app.js"></script>
 
+
 </body>
+
 </html>
