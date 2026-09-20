@@ -1,19 +1,72 @@
+/* =========================================
+   LUXURY EVENT QR CHECK-IN
+   ========================================= */
+
 * {
     box-sizing: border-box;
 }
 
-body {
-    margin: 0;
-    font-family: Georgia, "Times New Roman", serif;
-    background:
-        radial-gradient(circle at top left, #4a3425 0%, transparent 35%),
-        radial-gradient(circle at bottom right, #3b281d 0%, transparent 35%),
-        #17110d;
-    color: #f4ead8;
-    min-height: 100vh;
+:root {
+    --bg: #0b0907;
+    --bg2: #14100c;
+    --panel: rgba(30, 24, 18, 0.92);
+    --panel-light: rgba(43, 34, 25, 0.95);
+
+    --gold: #d8b45a;
+    --gold-light: #f1d88a;
+    --gold-dark: #8f6b2c;
+
+    --text: #f5efe4;
+    --muted: #a99d8b;
+
+    --green: #55d6a0;
+    --red: #e46b6b;
+
+    --border: rgba(216, 180, 90, 0.28);
 }
 
-/* Main container */
+
+/* =========================================
+   BODY
+   ========================================= */
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    font-family:
+        Inter,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    color: var(--text);
+
+    background:
+        radial-gradient(
+            circle at 50% -20%,
+            rgba(216, 180, 90, 0.16),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 0% 100%,
+            rgba(112, 75, 25, 0.12),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #090806,
+            #15100c 50%,
+            #0a0806
+        );
+
+    background-attachment: fixed;
+}
+
+
+/* =========================================
+   CONTAINER
+   ========================================= */
 
 .container {
     width: 100%;
@@ -22,369 +75,784 @@ body {
     padding: 35px 25px;
 }
 
-/* Headings */
 
-h1,
-h2,
-h3 {
-    color: #d6b36a;
-    letter-spacing: 1px;
-}
-
-h1 {
-    font-size: 36px;
-}
-
-h2 {
-    font-size: 28px;
-}
-
-p {
-    color: #d8c9b5;
-}
-
-/* Hidden */
+/* =========================================
+   HIDDEN
+   ========================================= */
 
 .hidden {
     display: none !important;
 }
 
-/* Login */
+
+/* =========================================
+   TEXT
+   ========================================= */
+
+h1,
+h2,
+h3 {
+    color: var(--gold-light);
+    letter-spacing: 0.5px;
+}
+
+h1 {
+    font-size: 34px;
+    margin-bottom: 5px;
+}
+
+h2 {
+    font-size: 27px;
+}
+
+p {
+    color: var(--muted);
+}
+
+
+/* =========================================
+   LOGIN
+   ========================================= */
 
 #login-section {
     max-width: 430px;
+
     margin: 100px auto;
-    background: linear-gradient(145deg, #2a1d15, #1d1510);
+
     padding: 40px;
-    border-radius: 22px;
-    border: 1px solid #8e6d38;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(45, 35, 25, 0.96),
+            rgba(18, 14, 10, 0.96)
+        );
+
+    border: 1px solid var(--border);
+
+    border-radius: 24px;
+
     box-shadow:
-        0 20px 60px rgba(0, 0, 0, 0.5),
-        inset 0 1px rgba(255, 255, 255, 0.04);
+        0 30px 80px rgba(0, 0, 0, 0.6),
+        0 0 40px rgba(216, 180, 90, 0.05);
+
     text-align: center;
 }
 
 #login-section h1 {
-    margin-bottom: 8px;
+    margin-top: 0;
 }
 
 #login-section p {
-    margin-bottom: 30px;
+    margin-bottom: 25px;
 }
 
-/* Inputs */
+
+/* =========================================
+   INPUTS
+   ========================================= */
 
 input {
     width: 100%;
-    padding: 15px;
-    margin: 8px 0;
-    border: 1px solid #806338;
-    border-radius: 10px;
-    font-size: 16px;
-    background: #17110d;
-    color: #f5ead7;
-    outline: none;
-}
 
-input:focus {
-    border-color: #d6b36a;
-    box-shadow: 0 0 0 2px rgba(214, 179, 106, 0.15);
+    padding: 15px 17px;
+
+    margin: 8px 0;
+
+    background: #0d0a08;
+
+    color: var(--text);
+
+    border: 1px solid rgba(216, 180, 90, 0.25);
+
+    border-radius: 12px;
+
+    font-size: 16px;
+
+    outline: none;
+
+    transition: 0.25s;
 }
 
 input::placeholder {
-    color: #9e8d78;
+    color: #776d60;
 }
 
-/* Buttons */
+input:focus {
+    border-color: var(--gold);
+
+    box-shadow:
+        0 0 0 3px rgba(216, 180, 90, 0.08),
+        0 0 20px rgba(216, 180, 90, 0.08);
+}
+
+
+/* =========================================
+   BUTTONS
+   ========================================= */
 
 button {
-    border: 1px solid #a98548;
-    padding: 13px 22px;
+    border: 1px solid rgba(216, 180, 90, 0.35);
+
+    padding: 13px 21px;
+
     margin: 6px 3px;
-    border-radius: 9px;
+
+    border-radius: 10px;
+
     cursor: pointer;
-    background: linear-gradient(135deg, #b89550, #80602e);
-    color: #17110d;
+
+    background:
+        linear-gradient(
+            135deg,
+            #caa64e,
+            #92702d
+        );
+
+    color: #120e09;
+
+    font-weight: 700;
+
     font-size: 15px;
-    font-weight: bold;
-    transition: 0.2s ease;
+
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s,
+        filter 0.2s;
 }
 
 button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
-    opacity: 1;
+
+    filter: brightness(1.1);
+
+    box-shadow:
+        0 8px 25px rgba(216, 180, 90, 0.18);
 }
 
-/* Header */
+button:active {
+    transform: translateY(0);
+}
+
+
+/* =========================================
+   HEADER
+   ========================================= */
 
 header {
-    background: rgba(35, 25, 18, 0.96);
-    padding: 22px 25px;
-    border-radius: 18px;
+    position: relative;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(40, 31, 22, 0.96),
+            rgba(18, 14, 10, 0.96)
+        );
+
+    padding: 22px 28px;
+
+    border-radius: 20px;
+
+    border: 1px solid var(--border);
+
     display: flex;
+
     justify-content: space-between;
+
     align-items: center;
+
     margin-bottom: 25px;
-    border: 1px solid #765a32;
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+
+    box-shadow:
+        0 15px 50px rgba(0, 0, 0, 0.35);
+}
+
+header::after {
+    content: "";
+
+    position: absolute;
+
+    left: 8%;
+    right: 8%;
+    bottom: -1px;
+
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--gold),
+            transparent
+        );
+
+    opacity: 0.6;
 }
 
 header h1 {
     margin: 0;
+
+    font-size: 25px;
 }
 
 header p {
-    margin: 4px 0 0;
+    margin: 3px 0 0;
 }
 
-/* Statistics */
+
+/* =========================================
+   DASHBOARD TITLE
+   ========================================= */
+
+#admin-section::before {
+    content: "✦   ✦   ✦";
+
+    display: block;
+
+    text-align: center;
+
+    color: var(--gold);
+
+    font-size: 18px;
+
+    letter-spacing: 10px;
+
+    margin: 5px 0 10px;
+
+    opacity: 0.8;
+}
+
+
+/* =========================================
+   STATS
+   ========================================= */
 
 .stats {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
     gap: 18px;
+
     margin-bottom: 25px;
 }
 
 .stat-card {
-    background: linear-gradient(145deg, #2d2017, #211711);
-    padding: 25px;
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(43, 34, 24, 0.95),
+            rgba(19, 15, 11, 0.95)
+        );
+
+    padding: 28px 20px;
+
     text-align: center;
-    border-radius: 17px;
-    border: 1px solid #866633;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+
+    border-radius: 18px;
+
+    border: 1px solid var(--border);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.03),
+        0 15px 35px rgba(0,0,0,0.3);
+
+    transition: 0.25s;
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+
+    border-color: rgba(216, 180, 90, 0.55);
+
+    box-shadow:
+        0 15px 45px rgba(0,0,0,0.4),
+        0 0 25px rgba(216,180,90,0.06);
+}
+
+.stat-card::before {
+    content: "";
+
+    position: absolute;
+
+    width: 100px;
+    height: 100px;
+
+    top: -50px;
+    right: -50px;
+
+    border-radius: 50%;
+
+    background: rgba(216,180,90,0.08);
 }
 
 .stat-card span {
     display: block;
+
     font-size: 42px;
-    font-weight: bold;
-    color: #d6b36a;
-    margin-top: 8px;
+
+    font-weight: 800;
+
+    color: var(--gold-light);
+
+    margin-bottom: 5px;
 }
 
-/* Navigation */
+
+/* =========================================
+   NAVIGATION TABS
+   ========================================= */
 
 .tabs {
-    background: rgba(35, 25, 18, 0.95);
-    padding: 12px;
+    display: flex;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    background:
+        rgba(22, 17, 12, 0.9);
+
+    padding: 9px;
+
     border-radius: 16px;
+
+    border: 1px solid var(--border);
+
     margin-bottom: 25px;
-    border: 1px solid #765a32;
-    text-align: center;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.25);
 }
 
 .tabs button {
-    margin: 4px;
+    background: transparent;
+
+    color: var(--muted);
+
+    border: 1px solid transparent;
+
+    box-shadow: none;
 }
 
-/* Pages */
+.tabs button:hover {
+    color: var(--gold-light);
+
+    border-color: var(--border);
+
+    background: rgba(216,180,90,0.06);
+}
+
+
+/* =========================================
+   PAGES
+   ========================================= */
 
 #generate-page,
 #scan-page,
 #guests-page,
 #qrcodes-page {
-    background: linear-gradient(145deg, #2a1d15, #211711);
+    background:
+        linear-gradient(
+            145deg,
+            rgba(32, 25, 18, 0.96),
+            rgba(17, 13, 10, 0.96)
+        );
+
     padding: 30px;
-    border-radius: 20px;
-    border: 1px solid #765a32;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+
+    border-radius: 22px;
+
+    border: 1px solid var(--border);
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,0.35);
 }
 
-/* QR generated */
+
+/* =========================================
+   QR GENERATOR
+   ========================================= */
 
 #qrcode {
     margin: 25px auto;
+
+    display: flex;
+
+    justify-content: center;
+
     padding: 20px;
-    background: white;
-    width: fit-content;
-    border-radius: 12px;
 }
 
-/* Scanner */
+#qrcode canvas,
+#qrcode img {
+    background: white;
+
+    padding: 12px;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,0.45);
+}
+
+
+/* =========================================
+   SCANNER
+   ========================================= */
 
 #reader {
     width: 100%;
-    max-width: 500px;
+
+    max-width: 520px;
+
     margin: 25px auto;
-    background: #100c09;
-    border: 2px solid #8e6d38;
-    border-radius: 15px;
+
+    background: #050403;
+
+    border: 1px solid var(--border);
+
+    border-radius: 18px;
+
     overflow: hidden;
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,0.45);
 }
 
-/* Manual check-in */
+
+/* Scanner buttons */
+
+#reader button {
+    margin: 8px;
+}
+
+
+/* =========================================
+   MANUAL CHECK-IN
+   ========================================= */
 
 .manual-checkin {
     margin-top: 30px;
+
     padding: 28px;
-    border: 1px solid #a98548;
-    border-radius: 16px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(40,31,21,0.95),
+            rgba(18,14,10,0.95)
+        );
+
+    border: 1px solid var(--border);
+
+    border-radius: 18px;
+
     text-align: center;
-    background: linear-gradient(145deg, #302117, #211711);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.03);
 }
 
 .manual-checkin h3 {
     margin-top: 0;
-    font-size: 24px;
+
+    color: var(--gold-light);
 }
 
 .manual-checkin p {
-    margin-bottom: 18px;
+    margin-bottom: 20px;
 }
 
 .manual-input-row {
     display: flex;
+
     justify-content: center;
+
     gap: 10px;
+
     max-width: 430px;
-    margin: 0 auto;
+
+    margin: auto;
 }
 
 .manual-input-row input {
     width: 150px;
-    padding: 13px;
-    font-size: 20px;
-    text-align: center;
-    border-radius: 9px;
-    border: 1px solid #a98548;
-}
 
-.manual-input-row button {
-    padding: 13px 22px;
+    text-align: center;
+
+    font-size: 20px;
 }
 
 #manual-result {
     margin-top: 18px;
+
     font-size: 18px;
+
     font-weight: bold;
 }
 
-/* Results */
+
+/* =========================================
+   SUCCESS / ERROR
+   ========================================= */
 
 .success {
     padding: 22px;
-    background: #213427;
-    color: #c9e7d0;
-    border: 1px solid #527c5d;
-    border-radius: 12px;
+
+    background:
+        rgba(47, 140, 95, 0.12);
+
+    color: var(--green);
+
+    border: 1px solid rgba(85,214,160,0.25);
+
+    border-radius: 14px;
+
     text-align: center;
 }
 
 .error {
     padding: 22px;
-    background: #3b211f;
-    color: #f1c7c2;
-    border: 1px solid #8d4b44;
-    border-radius: 12px;
+
+    background:
+        rgba(180, 50, 50, 0.12);
+
+    color: var(--red);
+
+    border: 1px solid rgba(228,107,107,0.25);
+
+    border-radius: 14px;
+
     text-align: center;
 }
 
-/* Guest list */
 
-.guest-row {
-    padding: 18px;
-    border-bottom: 1px solid #493629;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(255, 255, 255, 0.02);
-}
-
-.guest-row:hover {
-    background: rgba(214, 179, 106, 0.05);
-}
-
-/* QR Gallery */
+/* =========================================
+   QR GALLERY
+   ========================================= */
 
 #qr-gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 22px;
-    margin-top: 28px;
+
+    grid-template-columns:
+        repeat(auto-fill, minmax(190px, 1fr));
+
+    gap: 18px;
+
+    margin-top: 25px;
 }
+
+
+/* QR CARD */
 
 .qr-card {
     position: relative;
-    background: #f7f1e7;
-    color: #2b1c12;
-    border: 3px solid #b89550;
-    border-radius: 16px;
-    padding: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #fdfbf6,
+            #e9e2d5
+        );
+
+    border: none;
+
+    border-radius: 18px;
+
+    padding: 18px;
+
     text-align: center;
+
     overflow: hidden;
+
     box-shadow:
-        0 12px 30px rgba(0, 0, 0, 0.35),
-        inset 0 0 0 1px rgba(255, 255, 255, 0.7);
-    transition: 0.2s ease;
+        0 12px 30px rgba(0,0,0,0.35);
+
+    transition:
+        transform 0.25s,
+        box-shadow 0.25s;
 }
 
 .qr-card:hover {
-    transform: translateY(-4px);
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 20px 45px rgba(0,0,0,0.5),
+        0 0 20px rgba(216,180,90,0.12);
 }
+
+
+/* QR IMAGE */
 
 .qr-image {
     display: flex;
+
     justify-content: center;
-    margin-bottom: 14px;
+
+    margin-bottom: 12px;
 }
 
+.qr-image canvas,
 .qr-image img {
-    border-radius: 4px;
+    max-width: 100%;
+
+    background: white;
+
+    border-radius: 8px;
 }
+
+
+/* QR NUMBER */
 
 .qr-number {
-    font-size: 23px;
-    font-weight: bold;
-    color: #6d4d20;
+    font-size: 20px;
+
+    font-weight: 800;
+
+    color: #211a12;
+
     margin-top: 8px;
 }
 
+
+/* QR NAME */
+
 .qr-name {
-    font-family: Arial, sans-serif;
-    font-size: 16px;
-    margin-top: 6px;
-    color: #59402b;
+    font-size: 14px;
+
+    color: #756653;
+
+    margin-top: 5px;
 }
 
-/* Used QR */
+
+/* =========================================
+   USED QR CODE
+   ========================================= */
 
 .qr-card.used {
     opacity: 0.42;
+
     filter: grayscale(100%);
+
+    transform: scale(0.98);
 }
 
 .qr-card.used:hover {
-    transform: none;
+    transform: scale(0.98);
 }
+
+
+/* USED LABEL */
 
 .qr-used {
     position: absolute;
-    top: 17px;
+
+    top: 18px;
+
     right: -38px;
-    background: #6d211b;
+
+    background:
+        linear-gradient(
+            135deg,
+            #8e2d2d,
+            #5e1c1c
+        );
+
     color: white;
+
     padding: 7px 42px;
-    font-family: Arial, sans-serif;
-    font-size: 13px;
-    font-weight: bold;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
     letter-spacing: 1px;
+
     transform: rotate(45deg);
+
+    box-shadow:
+        0 4px 12px rgba(0,0,0,0.25);
 }
 
-/* Section title decoration */
 
-#qrcodes-page h2,
-#guests-page h2,
-#scan-page h2,
-#generate-page h2 {
-    border-bottom: 1px solid #765a32;
-    padding-bottom: 15px;
-    margin-bottom: 25px;
+/* =========================================
+   GUEST LIST
+   ========================================= */
+
+.guest-row {
+    padding: 17px 18px;
+
+    margin-bottom: 8px;
+
+    background:
+        rgba(255,255,255,0.025);
+
+    border: 1px solid rgba(216,180,90,0.10);
+
+    border-radius: 12px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    transition: 0.2s;
 }
 
-/* Mobile */
+.guest-row:hover {
+    background:
+        rgba(216,180,90,0.05);
+
+    border-color:
+        rgba(216,180,90,0.22);
+}
+
+
+/* =========================================
+   SCROLLBAR
+   ========================================= */
+
+::-webkit-scrollbar {
+    width: 9px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0b0907;
+}
+
+::-webkit-scrollbar-thumb {
+    background:
+        linear-gradient(
+            #8f6b2c,
+            #c9a64f
+        );
+
+    border-radius: 10px;
+}
+
+
+/* =========================================
+   SELECTION
+   ========================================= */
+
+::selection {
+    background: rgba(216,180,90,0.3);
+
+    color: white;
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
 
 @media (max-width: 700px) {
 
@@ -397,7 +865,7 @@ header p {
     }
 
     h2 {
-        font-size: 24px;
+        font-size: 23px;
     }
 
     .stats {
@@ -406,8 +874,18 @@ header p {
 
     header {
         flex-direction: column;
+
         align-items: flex-start;
+
         gap: 15px;
+    }
+
+    .tabs {
+        flex-wrap: wrap;
+    }
+
+    .tabs button {
+        flex: 1;
     }
 
     #generate-page,
@@ -430,12 +908,27 @@ header p {
     }
 
     #qr-gallery {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
+
+        gap: 12px;
+    }
+
+    .qr-card {
+        padding: 12px;
     }
 
     .guest-row {
         flex-direction: column;
+
         align-items: flex-start;
+
         gap: 7px;
+    }
+}
+
+@media (max-width: 420px) {
+
+    #qr-gallery {
+        grid-template-columns: 1fr;
     }
 }
