@@ -46,100 +46,259 @@
 
     <section id="admin-section" class="hidden">
 
-        <!-- TOP NAVIGATION -->
+        <!-- LUXURY DASHBOARD -->
 
-<header class="luxury-header">
+<div class="dashboard-layout">
 
-    <div class="brand-area">
+    <!-- LEFT SIDEBAR -->
 
-        <div class="brand-mark">
-            ✦
+    <aside class="sidebar">
+
+        <div class="sidebar-brand">
+
+            <div class="sidebar-logo">
+                EV
+            </div>
+
+            <div>
+                <div class="sidebar-title">
+                    Event Check-In
+                </div>
+
+                <div class="sidebar-subtitle">
+                    QR Guest Management
+                </div>
+            </div>
+
         </div>
 
-        <div>
-            <h1>EVENT CHECK-IN</h1>
-            <p>Luxury Guest Management System</p>
+
+        <nav class="sidebar-nav">
+
+            <button
+                class="sidebar-item active"
+                onclick="showPage('generate')"
+            >
+                <span class="sidebar-icon">⌂</span>
+                <span>Dashboard</span>
+            </button>
+
+
+            <button
+                class="sidebar-item"
+                onclick="showPage('scan')"
+            >
+                <span class="sidebar-icon">⌗</span>
+                <span>Scan QR</span>
+            </button>
+
+
+            <button
+                class="sidebar-item"
+                onclick="showPage('qrcodes')"
+            >
+                <span class="sidebar-icon">▦</span>
+                <span>QR Codes</span>
+            </button>
+
+
+            <button
+                class="sidebar-item"
+                onclick="showPage('guests')"
+            >
+                <span class="sidebar-icon">♧</span>
+                <span>Guests</span>
+            </button>
+
+        </nav>
+
+
+        <div class="sidebar-decoration">
+
+            <div>Good people</div>
+            <div>make great events</div>
+
+            <span>♥</span>
+
         </div>
 
-    </div>
-
-    <div class="header-right">
-
-        <div class="admin-badge">
-            <span>●</span>
-            ADMIN
-        </div>
-
-        <button
-            class="logout-btn"
-            onclick="logout()"
-        >
-            Logout
-        </button>
-
-    </div>
-
-</header>
+    </aside>
 
 
-<!-- NAVIGATION -->
+    <!-- MAIN DASHBOARD -->
 
-<div class="tabs luxury-tabs">
+    <main class="dashboard-main">
 
-    <button
-        class="luxury-tab active"
-        onclick="showPage('generate')"
-    >
-        <span>⌂</span>
-        Dashboard
-    </button>
 
-    <button
-        class="luxury-tab"
-        onclick="showPage('scan')"
-    >
-        <span>⌗</span>
-        Scan QR
-    </button>
+        <!-- TOP HEADER -->
 
-    <button
-        class="luxury-tab"
-        onclick="showPage('qrcodes')"
-    >
-        <span>▦</span>
-        QR Codes
-    </button>
+        <header class="dashboard-header">
 
-    <button
-        class="luxury-tab"
-        onclick="showPage('guests')"
-    >
-        <span>♧</span>
-        Guests
-    </button>
+            <div class="mobile-brand">
 
-</div>
+                <div class="sidebar-logo">
+                    EV
+                </div>
 
+                <div>
+                    <strong>Event Check-In</strong>
+
+                    <small>
+                        QR Guest Management
+                    </small>
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-user">
+
+                <div class="admin-profile">
+
+                    <span class="profile-icon">
+                        ◯
+                    </span>
+
+                    <span>
+                        Admin
+                    </span>
+
+                    <span>
+                       ⌄
+                    </span>
+
+                </div>
+
+
+                <button
+                    class="dashboard-logout"
+                    onclick="logout()"
+                >
+                    ⇥
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- WEDDING HERO -->
+
+        <section class="wedding-hero">
+
+            <div class="hero-ornament">
+                ───── ◆ ─────
+            </div>
+
+
+            <div class="hero-content">
+
+                <div class="hero-decoration left">
+                    ❧
+                </div>
+
+
+                <div>
+
+                    <h1>
+                        WEDDING EVENT
+                    </h1>
+
+                    <h2>
+                        GUEST CHECK-IN SYSTEM
+                    </h2>
+
+                    <div class="hero-divider">
+                        <span>Scan</span>
+                        <b>◆</b>
+                        <span>Check In</span>
+                        <b>◆</b>
+                        <span>Celebrate</span>
+                    </div>
+
+                </div>
+
+
+                <div class="hero-decoration right">
+                    ❧
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- STATISTICS -->
 
         <div class="stats">
 
             <div class="stat-card">
-                <span id="total-guests">0</span>
-                <p>Total Guests</p>
+
+                <div class="stat-icon">
+                    ♟
+                </div>
+
+                <div class="stat-information">
+
+                    <span id="total-guests">
+                        0
+                    </span>
+
+                    <p>
+                        TOTAL GUESTS
+                    </p>
+
+                </div>
+
             </div>
 
-            <div class="stat-card">
-                <span id="entered-guests">0</span>
-                <p>Entered</p>
-            </div>
 
             <div class="stat-card">
-                <span id="remaining-guests">0</span>
-                <p>Remaining</p>
+
+                <div class="stat-icon">
+                    ✓
+                </div>
+
+                <div class="stat-information">
+
+                    <span id="entered-guests">
+                        0
+                    </span>
+
+                    <p>
+                        CHECKED IN
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    ◷
+                </div>
+
+                <div class="stat-information">
+
+                    <span id="remaining-guests">
+                        0
+                    </span>
+
+                    <p>
+                        REMAINING
+                    </p>
+
+                </div>
+
             </div>
 
         </div>
 
+    </main>
+
+</div>
         <section id="generate-page">
 
             <h2>Generate Guest QR</h2>
