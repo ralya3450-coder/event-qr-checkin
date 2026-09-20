@@ -193,17 +193,10 @@ if (error) {
     return;
 }
 
-const guest = data[0];
+const guest = guestData[0];
 
-
-    if (error) {
-
-        message.textContent =
-            error.message;
-
-        return;
-    }
-
+window.currentGuestNumber =
+    String(guest.guest_number).padStart(3, "0");
 
     // Clear previous QR
 
@@ -267,33 +260,59 @@ document
 
 function downloadQR() {
 
-    const canvas =
+    const qrCanvas =
         document.querySelector("#qrcode canvas");
 
-
-    if (!canvas) {
-
+    if (!qrCanvas) {
         alert("Generate a QR code first.");
-
         return;
     }
 
+    const guestNumber =
+        window.currentGuestNumber || "000";
 
-    const link =
-        document.createElement("a");
+    const finalCanvas =
+        document.createElement("canvas");
 
+    finalCanvas.width = 250;
+    finalCanvas.height = 300;
 
-    link.download =
-        "guest-qr.png";
+    const ctx = finalCanvas.getContext("2d");
 
+    // White background
+    ctx.fillStyle = "white";
+    ctx.fillRect(0, 0, 250, 300);
+
+    // QR code
+    ctx.drawImage(
+        qrCanvas,
+        0,
+        0,
+        250,
+        250
+    );
+
+    // Guest number
+    ctx.fillStyle = "black";
+    ctx.font = "bold 28px Arial";
+    ctx.textAlign = "center";
+
+    ctx.fillText(
+        guestNumber,
+        125,
+        285
+    );
+
+    // Download
+    const link = document.createElement("a");
+
+    link.download = `guest-${guestNumber}.png`;
 
     link.href =
-        canvas.toDataURL("image/png");
-
+        finalCanvas.toDataURL("image/png");
 
     link.click();
 }
-
 
 // ==========================================
 // QR SCANNER
