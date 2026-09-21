@@ -133,7 +133,12 @@ function showPage(page) {
 
     }
     
-    if (page === "qrcodes") {
+   if (page === "qrcodes") {
+
+    document
+        .getElementById("qrcodes-page")
+        .classList.remove("hidden");
+
     loadQRCodes();
 }
 
