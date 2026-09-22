@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 
 <head>
 
@@ -10,21 +10,12 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Event Check-In</title>
+    <title>منصة الدعوات</title>
 
     <link
         rel="stylesheet"
         href="style.css"
     >
-
-    <!-- Supabase -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-    <!-- QR Generator -->
-    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
-
-    <!-- QR Scanner -->
-    <script src="https://unpkg.com/html5-qrcode"></script>
 
 </head>
 
@@ -32,78 +23,133 @@
 <body>
 
 
-<!-- =====================================================
-     LOGIN
-===================================================== -->
+    <!-- =========================================
+         HEADER
+    ========================================== -->
 
-<section id="login-section">
+    <header class="top-header">
 
-    <h1>
-        Event Check-In
-    </h1>
+        <div class="brand">
+            دعوتي
+        </div>
 
-    <p>
-        QR Guest Management
-    </p>
+        <div class="progress">
+
+            <div
+                class="progress-step active"
+                data-step="1"
+            >
+                1
+            </div>
+
+            <span></span>
+
+            <div
+                class="progress-step"
+                data-step="2"
+            >
+                2
+            </div>
+
+            <span></span>
+
+            <div
+                class="progress-step"
+                data-step="3"
+            >
+                3
+            </div>
+
+            <span></span>
+
+            <div
+                class="progress-step"
+                data-step="4"
+            >
+                4
+            </div>
+
+            <span></span>
+
+            <div
+                class="progress-step"
+                data-step="5"
+            >
+                5
+            </div>
+
+            <span></span>
+
+            <div
+                class="progress-step"
+                data-step="6"
+            >
+                6
+            </div>
+
+            <span></span>
+
+            <div
+                class="progress-step"
+                data-step="7"
+            >
+                7
+            </div>
+
+            <span></span>
+
+            <div
+                class="progress-step"
+                data-step="8"
+            >
+                8
+            </div>
+
+            <span></span>
+
+            <div
+                class="progress-step"
+                data-step="9"
+            >
+                9
+            </div>
+
+        </div>
+
+    </header>
 
 
-    <input
-        type="email"
-        id="email"
-        placeholder="Email"
-    >
+
+    <!-- =========================================
+         MAIN
+    ========================================== -->
+
+    <main class="builder-container">
 
 
-    <input
-        type="password"
-        id="password"
-        placeholder="Password"
-    >
+        <!-- =====================================
+             STEP 1 — DESIGN
+        ====================================== -->
 
+        <section
+            class="builder-step active"
+            id="step-1"
+        >
 
-    <button onclick="login()">
-        Login
-    </button>
+            <div class="step-heading">
 
-
-    <p id="login-message"></p>
-
-</section>
-
-
-
-<!-- =====================================================
-     ONE ADMIN DASHBOARD
-===================================================== -->
-
-<section
-    id="admin-section"
-    class="hidden"
->
-
-    <div class="container">
-
-
-        <!-- =================================================
-             HEADER
-        ================================================== -->
-
-        <header>
-
-            <div class="header-brand">
-
-                <div class="header-symbol">
-                    ✦
-                </div>
+                <span class="step-number">
+                    01
+                </span>
 
                 <div>
 
                     <h1>
-                        EVENT CHECK-IN
+                        اختر تصميم دعوتك
                     </h1>
 
                     <p>
-                        Luxury Guest Management System
+                        اختر التصميم الذي يعبر عن مناسبتك.
                     </p>
 
                 </div>
@@ -111,337 +157,1100 @@
             </div>
 
 
-            <div class="header-admin">
+            <div class="design-categories">
 
-                <div class="admin-label">
-                    ● ADMIN
-                </div>
+                <button class="category active">
+                    الكل
+                </button>
 
-                <button onclick="logout()">
-                    Logout
+                <button class="category">
+                    فاخر
+                </button>
+
+                <button class="category">
+                    عصري
+                </button>
+
+                <button class="category">
+                    ورود
+                </button>
+
+                <button class="category">
+                    عربي
+                </button>
+
+                <button class="category">
+                    ملكي
+                </button>
+
+                <button class="category">
+                    داكن
                 </button>
 
             </div>
 
-        </header>
+
+            <div class="template-grid">
 
 
-
-        <!-- =================================================
-             MAIN NAVIGATION
-        ================================================== -->
-
-        <nav class="main-navigation">
-
-
-            <button
-                onclick="showPage('generate')"
-            >
-                ⌂ Dashboard
-            </button>
-
-
-            <button
-                onclick="showPage('scan')"
-            >
-                ⌗ Scan QR
-            </button>
-
-
-            <button
-                onclick="showPage('qrcodes')"
-            >
-                ▦ QR Codes
-            </button>
-
-
-            <button
-                onclick="showPage('guests')"
-            >
-                ♧ Guests
-            </button>
-
-
-        </nav>
-
-
-
-        <!-- =================================================
-             STATISTICS
-        ================================================== -->
-
-        <div class="stats">
-
-
-            <!-- TOTAL -->
-
-            <div class="stat-card">
-
-                <span id="total-guests">
-                    0
-                </span>
-
-                <p>
-                    Total Guests
-                </p>
-
-            </div>
-
-
-            <!-- ENTERED -->
-
-            <div class="stat-card">
-
-                <span id="entered-guests">
-                    0
-                </span>
-
-                <p>
-                    Entered
-                </p>
-
-            </div>
-
-
-            <!-- REMAINING -->
-
-            <div class="stat-card">
-
-                <span id="remaining-guests">
-                    0
-                </span>
-
-                <p>
-                    Remaining
-                </p>
-
-            </div>
-
-
-        </div>
-
-              
-
-        <!-- =================================================
-             GENERATE QR
-        ================================================== -->
-
-        <section
-            id="generate-page"
-        >
-
-            <h2>
-                Generate Guest QR
-            </h2>
-
-            <p>
-                Create a unique QR code for your guest.
-            </p>
-<!-- =================================================
-     QR GENERATION CONTROL
-================================================== -->
-
-<div class="qr-generation-control">
-
-    <span>
-        QR Generation:
-    </span>
-
-    <button
-        id="qr-generation-toggle"
-        onclick="toggleQRGeneration()"
-    >
-        ON
-    </button>
-
-</div>
-
-            <div class="generate-box">
-
-                <input
-                    type="text"
-                    id="guest-name"
-                    placeholder="Enter guest name"
+                <div
+                    class="template-card"
+                    data-template="gold"
                 >
 
+                    <div class="template-preview gold-preview">
 
-                <button onclick="createGuest()">
-                    Generate QR
-                </button>
+                        <div class="envelope-preview">
 
-            </div>
+                            <div class="envelope-flap">
+                            </div>
 
+                            <div class="envelope-name">
+                                دعوة خاصة
+                            </div>
 
-            <p id="generate-message"></p>
+                        </div>
 
+                    </div>
 
+                    <h3>
+                        الفخامة الذهبية
+                    </h3>
 
-            <!-- GENERATED QR -->
+                    <p>
+                        تصميم فاخر بالذهبي
+                    </p>
 
-            <div
-                id="qr-result"
-                class="hidden"
-            >
-
-                <h3>
-                    QR Code Generated
-                </h3>
-
-
-                <div id="qrcode"></div>
-
-
-                <button onclick="downloadQR()">
-                    Download QR
-                </button>
-
-            </div>
-
-
-        </section>
-
-
-
-        <!-- =================================================
-             SCAN QR
-        ================================================== -->
-<section
-    id="scan-page"
-    class="hidden"
->
-
-            <h2>
-                Scan QR
-            </h2>
-
-            <p>
-                Scan a guest QR code to check them in.
-            </p>
-
-
-            <div id="reader"></div>
-
-
-            <div id="scan-result"></div>
-
-
-
-            <!-- MANUAL CHECK-IN -->
-
-            <div class="manual-checkin">
-
-                <h3>
-                    Manual Check-In
-                </h3>
-
-                <p>
-                    Enter the guest number if the QR code
-                    cannot be scanned.
-                </p>
-
-
-                <div class="manual-input-row">
-
-                    <input
-                        type="number"
-                        id="manual-guest-number"
-                        placeholder="Guest Number"
-                        min="1"
+                    <button
+                        class="select-template"
+                        data-template="gold"
                     >
-
-
-                    <button onclick="manualCheckIn()">
-                        Check In
+                        اختيار التصميم
                     </button>
 
                 </div>
 
 
-                <div id="manual-result"></div>
+
+                <div
+                    class="template-card"
+                    data-template="ivory"
+                >
+
+                    <div class="template-preview ivory-preview">
+
+                        <div class="envelope-preview">
+
+                            <div class="envelope-flap">
+                            </div>
+
+                            <div class="envelope-name">
+                                دعوة خاصة
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <h3>
+                        العاجي العصري
+                    </h3>
+
+                    <p>
+                        تصميم هادئ وأنيق
+                    </p>
+
+                    <button
+                        class="select-template"
+                        data-template="ivory"
+                    >
+                        اختيار التصميم
+                    </button>
+
+                </div>
+
+
+
+                <div
+                    class="template-card"
+                    data-template="arabic"
+                >
+
+                    <div class="template-preview arabic-preview">
+
+                        <div class="envelope-preview">
+
+                            <div class="envelope-flap">
+                            </div>
+
+                            <div class="envelope-name">
+                                دعوة خاصة
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <h3>
+                        الخط العربي
+                    </h3>
+
+                    <p>
+                        لمسة عربية راقية
+                    </p>
+
+                    <button
+                        class="select-template"
+                        data-template="arabic"
+                    >
+                        اختيار التصميم
+                    </button>
+
+                </div>
+
+
+
+                <div
+                    class="template-card"
+                    data-template="floral"
+                >
+
+                    <div class="template-preview floral-preview">
+
+                        <div class="envelope-preview">
+
+                            <div class="envelope-flap">
+                            </div>
+
+                            <div class="envelope-name">
+                                دعوة خاصة
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <h3>
+                        حدائق الورد
+                    </h3>
+
+                    <p>
+                        تصميم ناعم بالورود
+                    </p>
+
+                    <button
+                        class="select-template"
+                        data-template="floral"
+                    >
+                        اختيار التصميم
+                    </button>
+
+                </div>
+
+
+
+                <div
+                    class="template-card"
+                    data-template="dark"
+                >
+
+                    <div class="template-preview dark-preview">
+
+                        <div class="envelope-preview">
+
+                            <div class="envelope-flap">
+                            </div>
+
+                            <div class="envelope-name">
+                                دعوة خاصة
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <h3>
+                        منتصف الليل
+                    </h3>
+
+                    <p>
+                        تصميم داكن فاخر
+                    </p>
+
+                    <button
+                        class="select-template"
+                        data-template="dark"
+                    >
+                        اختيار التصميم
+                    </button>
+
+                </div>
+
+
+
+                <div
+                    class="template-card"
+                    data-template="romantic"
+                >
+
+                    <div class="template-preview romantic-preview">
+
+                        <div class="envelope-preview">
+
+                            <div class="envelope-flap">
+                            </div>
+
+                            <div class="envelope-name">
+                                دعوة خاصة
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <h3>
+                        الرومانسية
+                    </h3>
+
+                    <p>
+                        تصميم رومانسي ناعم
+                    </p>
+
+                    <button
+                        class="select-template"
+                        data-template="romantic"
+                    >
+                        اختيار التصميم
+                    </button>
+
+                </div>
+
 
             </div>
 
 
-        </section>
+            <div class="step-actions">
 
+                <button
+                    class="next-button"
+                    id="next-step-1"
+                    disabled
+                >
+                    التالي
+                </button>
 
-
-        <!-- =================================================
-             GUEST LIST
-        ================================================== -->
-
-        <section
-    id="guests-page"
-    class="hidden"
->
-            <h2>
-                Guest List
-            </h2>
-
-            <p>
-                View all registered guests.
-            </p>
-
-
-            <button onclick="loadGuests()">
-                Refresh
-            </button>
-
-
-            <div id="guest-list"></div>
-
+            </div>
 
         </section>
 
 
 
-        <!-- =================================================
-             QR CODES
-        ================================================== -->
+        <!-- =====================================
+             STEP 2 — COUPLE
+        ====================================== -->
 
         <section
-    id="qrcodes-page"
-    class="hidden"
->
+            class="builder-step"
+            id="step-2"
+        >
 
-            <h2>
-                QR Codes
-            </h2>
+            <div class="step-heading">
 
-            <p>
-                View all generated guest QR codes.
-            </p>
+                <span class="step-number">
+                    02
+                </span>
+
+                <div>
+
+                    <h1>
+                        أسماء أصحاب المناسبة
+                    </h1>
+
+                    <p>
+                        أدخل الأسماء التي ستظهر في الدعوة.
+                    </p>
+
+                </div>
+
+            </div>
 
 
-            <div class="qr-search">
+            <div class="form-card">
+
+                <div class="form-group">
+
+                    <label>
+                        الاسم الأول
+                    </label>
+
+                    <input
+                        type="text"
+                        id="person-one"
+                        placeholder="مثال: محمد"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        الاسم الثاني
+                    </label>
+
+                    <input
+                        type="text"
+                        id="person-two"
+                        placeholder="مثال: سارة"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        اسم العائلة
+                    </label>
+
+                    <input
+                        type="text"
+                        id="family-name"
+                        placeholder="مثال: أحمد"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="step-actions">
+
+                <button
+                    class="back-button"
+                    data-back="1"
+                >
+                    السابق
+                </button>
+
+                <button
+                    class="next-button"
+                    data-next="3"
+                >
+                    التالي
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             STEP 3 — EVENT
+        ====================================== -->
+
+        <section
+            class="builder-step"
+            id="step-3"
+        >
+
+            <div class="step-heading">
+
+                <span class="step-number">
+                    03
+                </span>
+
+                <div>
+
+                    <h1>
+                        تفاصيل المناسبة
+                    </h1>
+
+                    <p>
+                        حدد تاريخ ووقت المناسبة.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-card">
+
+                <div class="form-group">
+
+                    <label>
+                        نوع المناسبة
+                    </label>
+
+                    <select id="event-type">
+
+                        <option value="">
+                            اختر المناسبة
+                        </option>
+
+                        <option>
+                            حفل زفاف
+                        </option>
+
+                        <option>
+                            ملكة
+                        </option>
+
+                        <option>
+                            خطوبة
+                        </option>
+
+                        <option>
+                            عقد قران
+                        </option>
+
+                        <option>
+                            عيد ميلاد
+                        </option>
+
+                        <option>
+                            مناسبة خاصة
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label>
+                            التاريخ
+                        </label>
+
+                        <input
+                            type="date"
+                            id="event-date"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            الوقت
+                        </label>
+
+                        <input
+                            type="time"
+                            id="event-time"
+                        >
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="step-actions">
+
+                <button
+                    class="back-button"
+                    data-back="2"
+                >
+                    السابق
+                </button>
+
+                <button
+                    class="next-button"
+                    data-next="4"
+                >
+                    التالي
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             STEP 4 — VENUE
+        ====================================== -->
+
+        <section
+            class="builder-step"
+            id="step-4"
+        >
+
+            <div class="step-heading">
+
+                <span class="step-number">
+                    04
+                </span>
+
+                <div>
+
+                    <h1>
+                        مكان المناسبة
+                    </h1>
+
+                    <p>
+                        أخبر ضيوفك أين ستكون المناسبة.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-card">
+
+                <div class="form-group">
+
+                    <label>
+                        اسم القاعة / المكان
+                    </label>
+
+                    <input
+                        type="text"
+                        id="venue-name"
+                        placeholder="مثال: قاعة اللؤلؤة"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        المدينة
+                    </label>
+
+                    <input
+                        type="text"
+                        id="venue-city"
+                        placeholder="مثال: الرياض"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        رابط الموقع على الخريطة
+                    </label>
+
+                    <input
+                        type="url"
+                        id="venue-map"
+                        placeholder="https://maps.google.com/..."
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="step-actions">
+
+                <button
+                    class="back-button"
+                    data-back="3"
+                >
+                    السابق
+                </button>
+
+                <button
+                    class="next-button"
+                    data-next="5"
+                >
+                    التالي
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             STEP 5 — TEXT
+        ====================================== -->
+
+        <section
+            class="builder-step"
+            id="step-5"
+        >
+
+            <div class="step-heading">
+
+                <span class="step-number">
+                    05
+                </span>
+
+                <div>
+
+                    <h1>
+                        نص الدعوة
+                    </h1>
+
+                    <p>
+                        اكتب الرسالة التي سيقرأها ضيوفك.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-card">
+
+                <div class="form-group">
+
+                    <label>
+                        عنوان الدعوة
+                    </label>
+
+                    <input
+                        type="text"
+                        id="invitation-title"
+                        placeholder="مثال: بكل حب ندعوكم لمشاركتنا فرحتنا"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        نص الدعوة
+                    </label>
+
+                    <textarea
+                        id="invitation-message"
+                        rows="7"
+                        placeholder="اكتب نص الدعوة هنا..."
+                    ></textarea>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        عبارة الختام
+                    </label>
+
+                    <input
+                        type="text"
+                        id="invitation-closing"
+                        placeholder="تشرفنا حضوركم"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="step-actions">
+
+                <button
+                    class="back-button"
+                    data-back="4"
+                >
+                    السابق
+                </button>
+
+                <button
+                    class="next-button"
+                    data-next="6"
+                >
+                    التالي
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             STEP 6 — GUESTS
+        ====================================== -->
+
+        <section
+            class="builder-step"
+            id="step-6"
+        >
+
+            <div class="step-heading">
+
+                <span class="step-number">
+                    06
+                </span>
+
+                <div>
+
+                    <h1>
+                        قائمة الضيوف
+                    </h1>
+
+                    <p>
+                        أضف ضيوفك لتخصيص دعوة لكل شخص أو عائلة.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="guest-add-card">
 
                 <input
                     type="text"
-                    id="qr-search"
-                    placeholder="Search guest..."
+                    id="guest-name"
+                    placeholder="اسم الضيف أو العائلة"
                 >
+
+                <input
+                    type="number"
+                    id="guest-count"
+                    placeholder="عدد الأشخاص"
+                    min="1"
+                    value="1"
+                >
+
+                <button
+                    id="add-guest"
+                >
+                    إضافة ضيف
+                </button>
 
             </div>
 
 
-            <div id="qr-gallery"></div>
+            <div
+                class="guest-list"
+                id="guest-list"
+            >
 
+                <p class="empty-guests">
+                    لم تتم إضافة أي ضيوف بعد.
+                </p>
+
+            </div>
+
+
+            <div class="step-actions">
+
+                <button
+                    class="back-button"
+                    data-back="5"
+                >
+                    السابق
+                </button>
+
+                <button
+                    class="next-button"
+                    data-next="7"
+                >
+                    التالي
+                </button>
+
+            </div>
 
         </section>
 
 
-    </div>
 
-</section>
+        <!-- =====================================
+             STEP 7 — RSVP
+        ====================================== -->
+
+        <section
+            class="builder-step"
+            id="step-7"
+        >
+
+            <div class="step-heading">
+
+                <span class="step-number">
+                    07
+                </span>
+
+                <div>
+
+                    <h1>
+                        تأكيد الحضور
+                    </h1>
+
+                    <p>
+                        حدد طريقة تأكيد الضيوف لحضورهم.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="settings-card">
+
+                <label class="switch-row">
+
+                    <span>
+                        تفعيل تأكيد الحضور
+                    </span>
+
+                    <input
+                        type="checkbox"
+                        id="enable-rsvp"
+                        checked
+                    >
+
+                </label>
+
+
+                <label class="switch-row">
+
+                    <span>
+                        السماح للضيف بتعديل عدد الأشخاص
+                    </span>
+
+                    <input
+                        type="checkbox"
+                        id="allow-guest-count"
+                    >
+
+                </label>
+
+
+                <label class="switch-row">
+
+                    <span>
+                        السماح بإضافة ملاحظات
+                    </span>
+
+                    <input
+                        type="checkbox"
+                        id="allow-notes"
+                        checked
+                    >
+
+                </label>
+
+            </div>
+
+
+            <div class="step-actions">
+
+                <button
+                    class="back-button"
+                    data-back="6"
+                >
+                    السابق
+                </button>
+
+                <button
+                    class="next-button"
+                    data-next="8"
+                >
+                    التالي
+                </button>
+
+            </div>
+
+        </section>
 
 
 
-<!-- =====================================================
-     APP JAVASCRIPT
-===================================================== -->
+        <!-- =====================================
+             STEP 8 — MUSIC
+        ====================================== -->
 
-<script src="app.js"></script>
+        <section
+            class="builder-step"
+            id="step-8"
+        >
 
+            <div class="step-heading">
+
+                <span class="step-number">
+                    08
+                </span>
+
+                <div>
+
+                    <h1>
+                        الموسيقى والمؤثرات
+                    </h1>
+
+                    <p>
+                        أضف لمسة موسيقية إلى دعوتك.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-card">
+
+                <div class="form-group">
+
+                    <label>
+                        رابط الموسيقى
+                    </label>
+
+                    <input
+                        type="url"
+                        id="music-url"
+                        placeholder="رابط الأغنية أو الملف الصوتي"
+                    >
+
+                </div>
+
+
+                <label class="switch-row">
+
+                    <span>
+                        تشغيل الموسيقى تلقائياً
+                    </span>
+
+                    <input
+                        type="checkbox"
+                        id="music-autoplay"
+                    >
+
+                </label>
+
+            </div>
+
+
+            <div class="step-actions">
+
+                <button
+                    class="back-button"
+                    data-back="7"
+                >
+                    السابق
+                </button>
+
+                <button
+                    class="next-button"
+                    data-next="9"
+                >
+                    التالي
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             STEP 9 — PREVIEW
+        ====================================== -->
+
+        <section
+            class="builder-step"
+            id="step-9"
+        >
+
+            <div class="step-heading">
+
+                <span class="step-number">
+                    09
+                </span>
+
+                <div>
+
+                    <h1>
+                        معاينة الدعوة
+                    </h1>
+
+                    <p>
+                        راجع بيانات دعوتك قبل نشرها.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="preview-card">
+
+                <div class="preview-envelope">
+
+                    <div class="preview-envelope-flap">
+                    </div>
+
+                    <div>
+
+                        <small>
+                            دعوة خاصة
+                        </small>
+
+                        <h2 id="preview-guest">
+                            اسم الضيف
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="preview-information">
+
+                    <h2 id="preview-couple">
+                        الاسم الأول & الاسم الثاني
+                    </h2>
+
+                    <p id="preview-event">
+                        المناسبة
+                    </p>
+
+                    <p id="preview-date">
+                        التاريخ والوقت
+                    </p>
+
+                    <p id="preview-venue">
+                        المكان
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="step-actions">
+
+                <button
+                    class="back-button"
+                    data-back="8"
+                >
+                    السابق
+                </button>
+
+                <button
+                    class="publish-button"
+                    id="publish-invitation"
+                >
+                    نشر الدعوة
+                </button>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <script src="app.js"></script>
 
 </body>
 
