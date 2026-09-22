@@ -913,3 +913,29 @@ async function toggleQRGeneration() {
             ? "QR generation is now ON."
             : "QR generation is now OFF.";
 }
+async function loadQRGenerationStatus() {
+
+    const button =
+        document.getElementById("qr-generation-toggle");
+
+    if (!button) {
+        return;
+    }
+
+    const { data, error } =
+        await supabaseClient
+            .from("app_settings")
+            .select("qr_generation_enabled")
+            .eq("id", true)
+            .single();
+
+    if (error) {
+        console.error(error);
+        return;
+    }
+
+    button.textContent =
+        data.qr_generation_enabled
+            ? "ON"
+            : "OFF";
+}
