@@ -113,6 +113,8 @@ function showPage(page) {
         .getElementById("guests-page")
         .classList.add("hidden");
 
+    document.getElementById("qrcodes-page").classList.add("hidden");
+
 
     if (page === "generate") {
     document.getElementById("generate-page").classList.remove("hidden");
