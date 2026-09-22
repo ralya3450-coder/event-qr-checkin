@@ -862,3 +862,54 @@ async function loadQRCodes() {
         gallery.appendChild(card);
     });
 }
+
+async function toggleQRGeneration() {
+
+    const button =
+        document.getElementById("qr-generation-toggle");
+
+    const { data: settings, error: settingsError } =
+        await supabaseClient
+            .from("app_settings")
+            .select("qr_generation_enabled")
+            .eq("id", true)
+            .single();
+
+    if (settingsError) {
+        console.error(settingsError);
+
+        document.getElementById("generate-message").textContent =
+            "Could not check QR generation status.";
+
+        return;
+    }
+
+    const newStatus =
+        !settings.qr_generation_enabled;
+
+    const { error } =
+        await supabaseClient
+            .from("app_settings")
+            .update({
+                qr_generation_enabled: newStatus,
+                updated_at: new Date().toISOString()
+            })
+            .eq("id", true);
+
+    if (error) {
+        console.error(error);
+
+        document.getElementById("generate-message").textContent =
+            "Could not change QR generation status.";
+
+        return;
+    }
+
+    button.textContent =
+        newStatus ? "ON" : "OFF";
+
+    document.getElementById("generate-message").textContent =
+        newStatus
+            ? "QR generation is now ON."
+            : "QR generation is now OFF.";
+}
