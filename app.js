@@ -115,12 +115,9 @@ function showPage(page) {
 
 
     if (page === "generate") {
-
-        document
-            .getElementById("generate-page")
-            .classList.remove("hidden");
-
-    }
+    document.getElementById("generate-page").classList.remove("hidden");
+    loadQRGenerationStatus();
+}
 
 
     if (page === "scan") {
