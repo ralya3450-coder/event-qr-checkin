@@ -161,6 +161,29 @@ function showPage(page) {
 
 async function createGuest() {
 
+        const { data: settings, error: settingsError } =
+        await supabaseClient
+            .from("app_settings")
+            .select("qr_generation_enabled")
+            .eq("id", true)
+            .single();
+
+    if (settingsError) {
+        console.error(settingsError);
+
+        document.getElementById("generate-message").textContent =
+            "Could not check QR generation status.";
+
+        return;
+    }
+
+    if (!settings.qr_generation_enabled) {
+        document.getElementById("generate-message").textContent =
+            "QR generation is currently OFF.";
+
+        return;
+    }
+
     const name =
         document
             .getElementById("guest-name")
